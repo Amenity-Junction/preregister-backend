@@ -1,0 +1,25 @@
+{
+  "name": "amenity-junction-pre-reg-back",
+  "version": "1.0.0",
+  "description": "The back-end of the registration form for Amenity Junction.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amenity-Junction/preregister-backend.git"
+  },
+  "keywords": [
+    "amenity-junction",
+    "community",
+    "service",
+    "jabalpur"
+  ],
+  "author": "Param Siddharth <contact@paramsid.com> (http://www.paramsid.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amenity-Junction/preregister-backend/issues"
+  },
+  "homepage": "https://github.com/Amenity-Junction/preregister-backend#readme"
+}
