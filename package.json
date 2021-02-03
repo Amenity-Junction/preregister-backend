@@ -2,8 +2,10 @@
   "name": "amenity-junction-pre-reg-back",
   "version": "1.0.0",
   "description": "The back-end of the registration form for Amenity Junction.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server",
+    "dev": "nodemon --exec \"npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,10 +18,26 @@
     "service",
     "jabalpur"
   ],
+  "engines": {
+    "node": "15.x",
+    "npm": "7.x"
+  },
   "author": "Param Siddharth <contact@paramsid.com> (http://www.paramsid.com/)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Amenity-Junction/preregister-backend/issues"
   },
-  "homepage": "https://github.com/Amenity-Junction/preregister-backend#readme"
+  "homepage": "https://github.com/Amenity-Junction/preregister-backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mime-types": "^2.1.28",
+    "mongoose": "^5.11.14",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "statushttp": "^1.0.1"
+  }
 }
