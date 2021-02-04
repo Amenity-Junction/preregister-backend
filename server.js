@@ -74,6 +74,8 @@ app.route('/')
 	}
 })
 .get(async (req, res) => {
+	if (!(req.body && req.header('access-password') === process.env.VIEW_PASS))
+		return res.status(statusCode.UNAUTHORIZED).send('Wrong password!');
 	try {
 		const members = await Member.find({});
 		return res.status(statusCode.OK).json(members);
@@ -83,9 +85,10 @@ app.route('/')
 	}
 })
 .delete(async (req, res) => {
-	if (!(req.body && req.body === process.env.SECRET_PASS))
+	if (!(req.body && req.body === process.env.DEL_PASS))
 		return res.status(statusCode.UNAUTHORIZED).send('Wrong password!');
 	try {
+		console.log(`Deleting records...`);
 		const members = await Member.deleteMany({});
 		fs.emptyDirSync(TMP_DIR);
 		fs.emptyDirSync(IMG_DIR);
