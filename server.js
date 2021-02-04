@@ -11,10 +11,11 @@ if (!MONGO_URI) {
 }
 
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const mime = require('mime-types');
 const { statusCode } = require('statushttp');
@@ -37,7 +38,8 @@ const fileUpload = multer({
 	}
 });
 
-app.use(express.json());
+app.use(cors());
+app.use(express.json({ strict: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
@@ -81,8 +83,12 @@ app.route('/')
 	}
 })
 .delete(async (req, res) => {
+	if (!(req.body && req.body === process.env.SECRET_PASS))
+		return res.status(statusCode.UNAUTHORIZED).send('Wrong password!');
 	try {
 		const members = await Member.deleteMany({});
+		fs.emptyDirSync(TMP_DIR);
+		fs.emptyDirSync(IMG_DIR);
 		return res.status(statusCode.OK).json(members);
 	} catch (e) {
 		console.log(e);
@@ -92,7 +98,7 @@ app.route('/')
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 	.then(() => {
-		console.log(`Connected to MongoDB at ${MONGO_URI}.`);
+		console.log(`Connected to MongoDB at ${MONGO_URI.replace(/:\/\/.+:.+@/, '******************')}.`);
 		app.listen(PORT, () => console.log(`Listening on port ${PORT}.`))
 	})
 	.catch(() => {
