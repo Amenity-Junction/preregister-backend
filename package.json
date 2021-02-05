@@ -36,6 +36,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs-extra": "^9.1.0",
+    "image-to-base64": "^2.1.1",
     "mime-types": "^2.1.28",
     "mongoose": "^5.11.14",
     "morgan": "^1.10.0",
